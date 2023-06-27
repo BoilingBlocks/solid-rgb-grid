@@ -8,8 +8,11 @@ const App: Component = () => {
 
   onMount(() => {
     const timer = setInterval(() => {
-      if (window.innerHeight !== containerWidth()) {
+      const isLandscape = window.innerHeight < window.innerWidth;
+      if (isLandscape && window.innerHeight !== containerWidth()) {
         setContainerWidth(window.innerHeight);
+      } else {
+        setContainerWidth(window.innerWidth);
       }
     }, 250);
     onCleanup(() => clearInterval(timer));
